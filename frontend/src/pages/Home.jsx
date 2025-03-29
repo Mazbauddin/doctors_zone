@@ -13,7 +13,7 @@ const Home = () => {
         <Banner/>
     </div>
 
-
+// 1:50 minute complete
   )
 }
 
