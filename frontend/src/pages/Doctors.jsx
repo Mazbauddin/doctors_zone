@@ -5,27 +5,26 @@ import { AppContext } from "../context/AppContext";
 const Doctors = () => {
   const { speciality } = useParams();
   const [filterDoc, setFilterDoc] = useState([]);
-const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const { doctors } = useContext(AppContext);
 
-
-  const applyFilter = () =>{
-    if(speciality){
-      setFilterDoc(doctors.filter(doc => doc.speciality === speciality))
-    } else{
-      setFilterDoc(doctors)
+  const applyFilter = () => {
+    if (speciality) {
+      setFilterDoc(doctors.filter((doc) => doc.speciality === speciality));
+    } else {
+      setFilterDoc(doctors);
     }
-  }
+  };
 
-  useEffect(() =>{
-    applyFilter()
-  },[doctors,speciality])
+  useEffect(() => {
+    applyFilter();
+  }, [doctors, speciality]);
 
   return (
     <div>
-      <p>Browse through the doctors specialist.</p>
-      <div>
+      <p className="text-gray-600">Browse through the doctors specialist.</p>
+      <div className="flex flex-col sm:flex-row items-start gap-5 mt-5">
         <div>
           <p>General physician</p>
           <p>Gynecologist</p>
@@ -34,7 +33,7 @@ const navigate = useNavigate()
           <p>Neurologist</p>
           <p>Gastroenterologist</p>
         </div>
-        <div>
+        <div className="w-full grid grid-cols-auto gap-4 gap-y-6">
           {filterDoc.map((item, index) => (
             <div
               onClick={() => navigate(`/appointment/${item._id}`)}
