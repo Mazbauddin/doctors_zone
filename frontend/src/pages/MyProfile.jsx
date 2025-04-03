@@ -13,14 +13,14 @@ const MyProfile = () => {
       line2: 'Circle, Church Road, London'
     },
     gender: "Male",
-    dob: '200-01-20'
+    dob: '2000-01-20'
   })
 
-  const [isEdit, setIsEdit] = useState(true)
+  const [isEdit, setIsEdit] = useState(false)
 
   return (
-    <div>
-      <img src={userData.image} alt="" />
+    <div className='max-w-lg flex flex-col gap-2 text-sm'>
+      <img className='w-36 rounded' src={userData.image} alt="" />
 
       {
         isEdit
@@ -70,8 +70,22 @@ const MyProfile = () => {
               </select>
               : <p>{userData.gender}</p>
           }
+          <p>Birthday:</p>
+          {
+            isEdit
+              ? <input type="date" onChange={(e) => setUserData(prev => ({ ...prev, dob: e.target.value }))} value={userData.dob} />
+              : <p>{userData.dob}</p>
+          }
         </div>
       </div>
+
+<div>
+  {
+    isEdit
+    ? <button onClick={()=> setIsEdit(false)}>Save Information</button>
+    : <button onClick={()=> setIsEdit(true)}>Edit</button>
+  }
+</div>
 
     </div>
   )
